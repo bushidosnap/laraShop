@@ -14,4 +14,10 @@ class Product extends Model
         $val = sprintf('%01.2f', $this->price / 100);
         return '$'.$val;
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany('App\Models\Category');
+    }
+
 }

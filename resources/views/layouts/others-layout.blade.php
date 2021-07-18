@@ -23,7 +23,7 @@
         @yield('extra-css')
     </head>
     <body>
-        @include('partials.landing-header')
+        @include('partials.nav')
         @yield('content')
         @include('partials.footer')
     </body>

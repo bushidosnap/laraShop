@@ -1,4 +1,4 @@
-@extends('layouts.layout-others')
+@extends('layouts.others-layout')
 @section('title','Shop')
 @section('content')
     <div>

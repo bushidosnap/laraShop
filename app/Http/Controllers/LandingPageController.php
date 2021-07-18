@@ -10,6 +10,6 @@ class LandingPageController extends Controller
 
         $products = Product::inRandomOrder()->take(8)->get();
 
-        return view('landing-page')->with('products', $products);
+        return view('landing-page',compact('products'));
     }
 }

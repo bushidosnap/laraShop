@@ -1,4 +1,4 @@
-@extends('main-layout')
+@extends('layouts.main-layout')
 @section('title', 'Home')
 @section('content')
     <div class="featured-section">

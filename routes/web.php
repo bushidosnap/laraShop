@@ -20,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/', [App\Http\Controllers\LandingPageController::class, 'index'])->name('landing-page');
-Route::view('/thankyou', 'thankyou');
-Route::view('/shop', 'shop');
+
+Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('shop.index');
+Route::get('/shop/{product}', [App\Http\Controllers\ShopController::class, 'show'])->name('shop.show');
+
