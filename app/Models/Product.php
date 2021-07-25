@@ -15,6 +15,11 @@ class Product extends Model
         return '$'.$val;
     }
 
+    public function scopeMightAlsoLike($query)
+    {
+        return $query->inRandomOrder()->take(4);
+    }
+
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category');

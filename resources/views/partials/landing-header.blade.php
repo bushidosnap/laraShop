@@ -12,7 +12,7 @@
         </div> {{-- end of hero-copy --}}
         
         <div class="hero-image">
-            <img src="img/rtx3080.png" alt="hero image">
+            <img src="{{productImage('gpu-1.png')}}" alt="hero image">
         </div>
     </div> {{-- end of hero --}}
     

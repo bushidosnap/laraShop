@@ -42,6 +42,7 @@ header {
         font-weight: bold;
         font-size: 28px;
     }
+
     ul {
         display: flex;
         text-transform: uppercase;
@@ -54,6 +55,7 @@ header {
         color: $white !important;
         &:hover {
             color: darken($white, 10%);
+            text-decoration: none;
         }
     }
 }

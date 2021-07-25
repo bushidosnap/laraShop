@@ -22,9 +22,17 @@
 
         @yield('extra-css')
     </head>
-    <body>
-        @include('partials.nav')
-        @yield('content')
-        @include('partials.footer')
+    <body class="@yield('body-class', '')">
+        <div class="page-container">
+            <div class=" content-wrap">
+                @include('partials.nav')
+                @yield('content')
+            </div>
+            <div class="@yield('footer-class', '')">
+                @include('partials.footer')
+            </div>
+            @yield('extra-js')
+            @include('sweetalert::alert')
+        </div>
     </body>
 </html>

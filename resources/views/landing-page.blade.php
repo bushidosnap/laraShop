@@ -8,7 +8,7 @@
             <p class="section-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, dicta nobis. Excepturi odio soluta odit ducimus qui hic nulla, debitis deserunt rem possimus enim amet.</p>
 
             <div class="text-center button-container">
-                <a href="#" class="button">Featured</a>
+                <a href="{{route('shop.index')}}" class="button">Featured</a>
                 <a href="#" class="button">On Sale</a>
             </div>
 
@@ -16,8 +16,8 @@
                 @foreach ($products as $product)
                 
                 <div class="product">
-                    <a href="#"><img src="img/rtx3080.png" alt="product"></a>
-                    <a href="#"><div class="product-name">{{$product->name}}</div></a>
+                    <a href="{{route('shop.show', $product->slug)}}"><img src="{{productImage($product->image)}}" alt="product"></a>
+                    <a href="{{route('shop.show', $product->slug)}}"><div class="product-name">{{$product->name}}</div></a>
                     <div class="product-price">{{$product->setPrice()}}</div>
                 </div>
 
@@ -26,7 +26,7 @@
             </div> {{-- end of products --}}
             
             <div class="text-center button-container">
-                <a href="#" class="button">View more Products</a>
+                <a href="{{route('shop.index')}}" class="button">View more Products</a>
             </div>
 
         </div> {{-- end container --}}
