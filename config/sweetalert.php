@@ -150,7 +150,7 @@ return [
     |
     */
 
-    'toast_position' => env('SWEET_ALERT_TOAST_POSITION', 'bottom-end'),
+    'toast_position' => env('SWEET_ALERT_TOAST_POSITION', 'top-end'),
 
     /*
     |--------------------------------------------------------------------------
@@ -164,7 +164,7 @@ return [
 
         'autoClose' => env('SWEET_ALERT_MIDDLEWARE_AUTO_CLOSE', true),
 
-        'toast_position' => env('SWEET_ALERT_MIDDLEWARE_TOAST_POSITION', 'bottom-end'),
+        'toast_position' => env('SWEET_ALERT_MIDDLEWARE_TOAST_POSITION', 'top-end'),
 
         'toast_close_button' => env('SWEET_ALERT_MIDDLEWARE_TOAST_CLOSE_BUTTON', true),
 

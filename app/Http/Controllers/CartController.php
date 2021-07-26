@@ -6,12 +6,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Cart;
 use Illuminate\Support\Facades\Validator;
+use App\Traits\getNumbersTrait;
 
 
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    use getNumbersTrait;
     /**
      * Display a listing of the resource.
      *
@@ -19,10 +21,13 @@ class CartController extends Controller
      */
     public function index()
     {
-        //var_dump((float)\Cart::total());
+        $discount = $this->getNumbers()->get('discount');
+        $newSubtotal = $this->getNumbers()->get('newSubtotal');
+        $newTax = $this->getNumbers()->get('newTax');
+        $newTotal = $this->getNumbers()->get('newTotal');
         $mightAlsoLike = Product::MightAlsoLike()->get();
 
-        return view('cart',compact('mightAlsoLike'));
+        return view('cart',compact('mightAlsoLike', 'discount', 'newSubtotal', 'newTax', 'newTotal'));
     }
 
     /**
@@ -75,28 +80,6 @@ class CartController extends Controller
         
             return redirect()->route('cart.index')->with('toast_success', "Item added to your Wish List!");
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -160,6 +143,23 @@ class CartController extends Controller
         }
 
         
+    }
+
+    private function getNumbers()
+    {
+        $tax = config('cart.tax') /100;
+        $discount = session()->get('coupon')['discount'] ?? 0;
+        $newSubtotal = (\Cart::subtotal() - $discount);
+        $newTax = $newSubtotal * $tax;
+        $newTotal = $newSubtotal + $newTax;
+
+        return collect([
+            'tax' => $tax,
+            'discount' => $discount,
+            'newSubtotal' => $newSubtotal,
+            'newTax' => $newTax,
+            'newTotal' => $newTotal,
+        ]);
     }
 
     

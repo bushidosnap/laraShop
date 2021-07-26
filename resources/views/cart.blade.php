@@ -75,8 +75,7 @@
                 <a href="#" class="have-code">Have a Code?</a>
 
                 <div class="have-code-container">
-                    {{-- action="{{ route('coupon.store') }}" --}}
-                    <form  method="POST">
+                    <form action="{{ route('coupon.store') }}" method="POST">
                         {{ csrf_field() }}
                         <input type="text" name="coupon_code" id="coupon_code">
                         <button type="submit" class="button button-plain">Apply</button>
@@ -99,7 +98,7 @@
                             <form action="{{ route('coupon.destroy') }}" method="POST" style="display:block">
                                 {{ csrf_field() }}
                                 {{ method_field('delete') }}
-                                <button type="submit" style="font-size:14px;">Remove</button>
+                                <button type="submit" class="btn btn-outline-danger btn-sm" style="font-size:14px;">Remove</button>
                             </form>
                             <hr>
                             New Subtotal <br>
@@ -109,14 +108,14 @@
                     </div>
                     <div class="cart-totals-subtotal">
                         {{ setPrice(Cart::subtotal()) }} <br>
-                        {{ setPrice(Cart::tax()) }}<br>
-                        {{-- {{setPrice(Cart::getCondition('Shipping-Fee')->getValue())}}<hr> --}}
-                        {{-- @if (session()->has('coupon'))
+                        @if (session()->has('coupon'))
                             -{{ setPrice($discount) }} <br>&nbsp;<br>
                             <hr>
-                            {{ setPrice($newSubtotal) }} <br>
-                        @endif --}}
-                        <span class="cart-totals-total">{{ setPrice(Cart::total()) }}</span>
+                            {{ setPrice($newSubtotal) }}
+                             <br>
+                        @endif
+                        {{ setPrice($newTax) }}<br>
+                        <span class="cart-totals-total">{{ setPrice($newTotal) }}</span>
                     </div>
                 </div>
             </div> <!-- end cart-totals -->

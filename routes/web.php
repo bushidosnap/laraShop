@@ -36,6 +36,9 @@ Route::post('/cart/wishList/{product}', [App\Http\Controllers\CartController::cl
 Route::get('/checkout', [App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('/checkout', [App\Http\Controllers\CheckoutController::class, 'store'])->name('checkout.store');
 
+Route::post('/coupon', [App\Http\Controllers\CouponsController::class, 'store'])->name('coupon.store');
+Route::delete('/coupon', [App\Http\Controllers\CouponsController::class, 'destroy'])->name('coupon.destroy');
+
 
 Route::get('/checkout/confirmation', [App\Http\Controllers\CheckoutController::class, 'confirmation'])->name('checkout.confirmation');
 

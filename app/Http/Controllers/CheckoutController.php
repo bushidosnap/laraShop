@@ -7,9 +7,11 @@ use App\Http\Requests\CheckoutRequest;
 use App\Models\Product;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Cartalyst\Stripe\Exception\CardErrorException;
+use App\Traits\getNumbersTrait;
 
 class CheckoutController extends Controller
 {
+    use getNumbersTrait;
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +19,12 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        return view('checkout');
+        $discount = $this->getNumbers()->get('discount');
+        $newSubtotal = $this->getNumbers()->get('newSubtotal');
+        $newTax = $this->getNumbers()->get('newTax');
+        $newTotal = $this->getNumbers()->get('newTotal');
+
+        return view('checkout',compact('discount','newSubtotal','newTax','newTotal'));
     }
 
     /**
@@ -45,18 +52,20 @@ class CheckoutController extends Controller
         try {
             
             $transaction = Stripe::charges()->create([
-                'amount' => \Cart::total() / 100,
+                'amount' => $this->getNumbers()->get('newTotal') / 100,
                 'currency' => 'USD',
                 'source' => $request->stripeToken,
                 'receipt_email' => $request->email,
                 'metadata' => [
                     'contents' => $contents,
                     'quantity' => \Cart::instance('default')->count(),
+                    'discount' => collect(session()->get('coupon'))->toJson(),
                 ],
             ]);
 
             //successful
             \Cart::instance('default')->destroy();
+            session()->forget('coupon');
             return view('confirmation')->with('success', 'Your Purchase has been successfully accepted');
         } catch (CardErrorException $e) {
             return back()->withErrors('Error! '.$e->getMessage());
@@ -65,7 +74,7 @@ class CheckoutController extends Controller
 
     public function confirmation()
     {
-        return view('confirmation');
+        return view('confirmation')->with('toast_success', 'Your Purchase has been successfully accepted');
     }
 
     /**

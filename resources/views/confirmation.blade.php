@@ -5,8 +5,8 @@
 
 @section('body-class', 'sticky-footer')
 @section('footer-class', 'footer-fixed')
-@section('content')
 
+@section('content')
    <div class="thank-you-section">
        <h1>Thank you for <br> Your Order!</h1>
        <p>A confirmation email was sent</p>
@@ -15,5 +15,4 @@
            <a href="{{ url('/') }}" class="button">Home Page</a>
        </div>
    </div>
-
 @endsection
