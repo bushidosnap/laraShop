@@ -16,7 +16,7 @@
                 @foreach ($products as $product)
                 
                 <div class="product">
-                    <a href="{{route('shop.show', $product->slug)}}"><img src="{{productImage($product->image)}}" alt="product"></a>
+                    <a href="{{route('shop.show', $product->slug)}}"><img src="{{productImage($product->image)}}" alt="{{ $product->name }}"></a>
                     <a href="{{route('shop.show', $product->slug)}}"><div class="product-name">{{$product->name}}</div></a>
                     <div class="product-price">{{$product->setPrice()}}</div>
                 </div>
@@ -55,10 +55,7 @@
                     <a href="#"><h2 class="blog-title">Blog Post Title 3</h2></a>
                     <div class="blog-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab adipisci temporibus corrupti, veniam eligendi perspiciatis?</div>
                 </div>
-
-            </div>{{-- end blog-post --}}
-
-        </div> {{-- end container --}}
-
-    </div>{{-- end blog-section --}}
+            </div>
+        </div>
+    </div>
 @endsection

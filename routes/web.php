@@ -43,3 +43,8 @@ Route::delete('/coupon', [App\Http\Controllers\CouponsController::class, 'destro
 Route::get('/checkout/confirmation', [App\Http\Controllers\CheckoutController::class, 'confirmation'])->name('checkout.confirmation');
 
 
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

@@ -2,7 +2,7 @@
 
 function productImage($image)
 {
-    return '/img/'.$image;
+    return $image && file_exists('storage/'.$image) ? asset('storage/'.$image) : asset('img/not-available.png');
 }
 
 function setActiveCategory($category, $output = 'active')

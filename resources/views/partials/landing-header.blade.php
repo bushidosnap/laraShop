@@ -1,4 +1,4 @@
-<header>
+<header class="with-background">
     @include('partials.nav')
     
     <div class="hero container">
@@ -12,7 +12,7 @@
         </div> {{-- end of hero-copy --}}
         
         <div class="hero-image">
-            <img src="{{productImage('gpu-1.png')}}" alt="hero image">
+            <img src="{{productImage('products/August2021/gpu-1.png')}}" alt="hero image">
         </div>
     </div> {{-- end of hero --}}
     
