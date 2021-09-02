@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +8,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Laravel Ecommerce | @yield('title', '')</title>
+        <title>LaraShop | @yield('title', '')</title>
 
         <link href="/img/favicon.ico" rel="SHORTCUT ICON" />
 
@@ -22,13 +22,17 @@
 
         @yield('extra-css')
     </head>
-
-
-<body class="@yield('body-class', '')">
-    @include('partials.nav')
-
-    @include('partials.footer')
-
-
-</body>
+    <body class="@yield('body-class', '')">
+        <div class="page-container">
+            <div class=" content-wrap">
+                @include('partials.nav')
+                @yield('content')
+            </div>
+            <div class="@yield('footer-class', '')">
+                @include('partials.footer')
+            </div>
+            @yield('extra-js')
+            @include('sweetalert::alert')
+        </div>
+    </body>
 </html>

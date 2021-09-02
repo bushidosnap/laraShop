@@ -1,6 +1,12 @@
 <footer>
     <div class="footer-content container">
-        <div class="made-with">Made with <i class="fa fa-heart heart"></i> by Andre Madarang</div>
-        {{ menu('footer', 'partials.menus.footer') }}
-    </div> <!-- end footer-content -->
+        <div class="made-with">Made with <i class="fa fa-heart"></i> Rodglenn Chris Rojas</div>
+        <ul>
+            <li>Follow Me:</li>
+            <li><a href="#"><i class="fa fa-globe"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+            <li><a href="#"><i class="fa fa-github"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        </ul>
+    </div>{{-- end footer-content --}}
 </footer>

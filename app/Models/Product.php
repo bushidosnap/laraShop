@@ -14,4 +14,15 @@ class Product extends Model
         $val = sprintf('%01.2f', $this->price / 100);
         return '$'.$val;
     }
+
+    public function scopeMightAlsoLike($query)
+    {
+        return $query->inRandomOrder()->take(4);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany('App\Models\Category');
+    }
+
 }

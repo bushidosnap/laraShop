@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -14,68 +15,29 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        Product::create([
-            'name' => 'GPU 1',
-            'slug' => 'gpu-1',
-            'details' => ' RTX 3080, 10GB, GDDR5',
-            'price' => 99999,
-            'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui reiciendis minus, impedit error aspernatur voluptate voluptatum doloremque quidem enim maiores dolorem quos incidunt atque porro!',
-        ]);
-        Product::create([
-            'name' => 'GPU 2',
-            'slug' => 'gpu-2',
-            'details' => ' RTX 3080, 10GB, GDDR5',
-            'price' => 99999,
-            'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui reiciendis minus, impedit error aspernatur voluptate voluptatum doloremque quidem enim maiores dolorem quos incidunt atque porro!',
-        ]);
-        Product::create([
-            'name' => 'GPU 3',
-            'slug' => 'gpu-3',
-            'details' => ' RTX 3080, 10GB, GDDR5',
-            'price' => 99999,
-            'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui reiciendis minus, impedit error aspernatur voluptate voluptatum doloremque quidem enim maiores dolorem quos incidunt atque porro!',
-        ]);
-        Product::create([
-            'name' => 'GPU 4',
-            'slug' => 'gpu-4',
-            'details' => ' RTX 3080, 10GB, GDDR5',
-            'price' => 99999,
-            'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui reiciendis minus, impedit error aspernatur voluptate voluptatum doloremque quidem enim maiores dolorem quos incidunt atque porro!',
-        ]);
-        Product::create([
-            'name' => 'GPU 5',
-            'slug' => 'gpu-5',
-            'details' => ' RTX 3080, 10GB, GDDR5',
-            'price' => 99999,
-            'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui reiciendis minus, impedit error aspernatur voluptate voluptatum doloremque quidem enim maiores dolorem quos incidunt atque porro!',
-        ]);
-        Product::create([
-            'name' => 'GPU 6',
-            'slug' => 'gpu-6',
-            'details' => ' RTX 3080, 10GB, GDDR5',
-            'price' => 99999,
-            'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui reiciendis minus, impedit error aspernatur voluptate voluptatum doloremque quidem enim maiores dolorem quos incidunt atque porro!',
-        ]);
-        Product::create([
-            'name' => 'GPU 7',
-            'slug' => 'gpu-7',
-            'details' => ' RTX 3080, 10GB, GDDR5',
-            'price' => 99999,
-            'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui reiciendis minus, impedit error aspernatur voluptate voluptatum doloremque quidem enim maiores dolorem quos incidunt atque porro!',
-        ]);
-        Product::create([
-            'name' => 'GPU 8',
-            'slug' => 'gpu-8',
-            'details' => ' RTX 3080, 10GB, GDDR5',
-            'price' => 99999,
-            'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui reiciendis minus, impedit error aspernatur voluptate voluptatum doloremque quidem enim maiores dolorem quos incidunt atque porro!',
-        ]);
-        Product::create([
-            'name' => 'GPU 9',
-            'slug' => 'gpu-9',
-            'details' => ' RTX 3080, 10GB, GDDR5',
-            'price' => 99999,
-            'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui reiciendis minus, impedit error aspernatur voluptate voluptatum doloremque quidem enim maiores dolorem quos incidunt atque porro!',
-        ]);
+        for ($i=1; $i <= 11; $i++) {
+            Product::create([
+                'name' => 'GPU '.$i,
+                'slug' => 'gpu-'.$i,
+                'details' => [13,14,15][array_rand([13,14,15])] . ' inch, ' . [1, 2, 3][array_rand([1, 2, 3])] .' TB SSD, 32GB RAM',
+                'price' => rand(149999, 249999),
+                'description' =>'Lorem '. $i . ' ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!',
+                'image' => 'gpu-'.$i.'.png',
+            ])->categories()->attach(1);
+        }
+
+        for ($i=1; $i <= 6; $i++) {
+            Product::create([
+                'name' => 'Tablet '.$i,
+                'slug' => 'tablet-'.$i,
+                'details' => [13,14,15][array_rand([13,14,15])] . ' inch, ' . [1, 2, 3][array_rand([1, 2, 3])] .' TB SSD, 32GB RAM',
+                'price' => rand(149999, 249999),
+                'description' =>'Lorem '. $i . ' ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!',
+                'image' => 'tablet-'.$i.'.jpg',
+            ])->categories()->attach(2);
+        }
+
+        $product = Product::find(11);
+        $product->categories()->attach(3);
     }
 }
